@@ -8,8 +8,21 @@ img {
     margin: auto;
 }
 
-.search-box{
-    text-align: center;
-    margin: 20px;
-    color: white;
+.search-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: white;
+}
+
+.search-box input {
+  flex: 1;
+  max-width: 400px;
+  padding: 10px;
+  color: white;
+}
+
+.search-box button {
+  padding: 10px 16px;
+  color: white;
 }
