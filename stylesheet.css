@@ -1,0 +1,9 @@
+* {
+    background-color: #2f00ff;
+}
+img {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
