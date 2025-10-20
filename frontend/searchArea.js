@@ -12,7 +12,7 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
         const data = await res.json();
 
         if (data.found){
-            resultEl.textContent = "Vi fandt sangen "${data.song}" af ${data.artist} fra albummet "${data.album}".";
+            resultEl.textContent = `Vi fandt sangen "${data.song}" af ${data.artist} fra albummet "${data.album}".`;
         } else {
             resultEl.textContent = "Vi kunne dsv ikke finde en sang der matchede din søgning, prøv igen."
         }
