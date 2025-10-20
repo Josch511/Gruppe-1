@@ -5,3 +5,7 @@ function addToCart(id) {
       updateCart();
     }
 }
+
+function updateCart() {
+    
+}
