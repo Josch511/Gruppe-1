@@ -1,29 +1,72 @@
 * {
-    background-color: #3f1cdbf7;
+    background-color: #FFC0CB;
+    font-family: 'Montserrat', sans-serif;;
 }
 img {
-    width: 300px;
-    height: auto;
-    display: block;
-    margin: auto;
+  width: 300px;
+  height: auto;
+  display: block;
+  margin: auto;
 }
 
 .search-box {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 50px;
-  color: white;
+  margin: 0 auto;
 }
 
 .search-box input {
   flex: 1;
   max-width: 400px;
   padding: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .search-box button {
   padding: 10px 16px;
-  color: white;
+  color: rgb(0, 0, 0);
+}
+
+#cartBox {
+  background-color: #f8f8f8;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  right: 20px;
+  bottom: 20px;
+  position: fixed;
+  width: 15%;
+  height: 15%;
+  text-align: center;
+  font-size: large;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#cartBox h3,
+#cartBox p,
+#cartBox button,
+#cartBox ul {
+  background-color: transparent;
+}
+
+.info {
+  background-color: white;
+  border: 2px solid white;
+  width: 20%;
+  bottom: 20px;
+  height: 15%;
+  left: 20px;
+  position: fixed;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  border: 2px solid white;
+  padding: 16px;
+}
+.info p {
+  background-color: transparent;
+  font-size: medium;
+  font-weight: bold;
+}
+.info h1 {
+  background-color: transparent;
+  font-size: x-large;
+  font-weight: bold;
 }
