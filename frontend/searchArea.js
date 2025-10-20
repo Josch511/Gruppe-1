@@ -8,7 +8,7 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
     }    
 
     try {
-        const res = await fetch(`http://localhost:5500/search?song=${encodeURIComponent(query)}`);
+        const res = await fetch(`http://localhost:3000/search?song=${encodeURIComponent(query)}`);
         const data = await res.json();
 
         if (data.found){

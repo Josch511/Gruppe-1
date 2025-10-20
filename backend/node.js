@@ -1,10 +1,11 @@
 import express from "express";
 import fs from "fs";
-
-import { request } from "http";
+import cors from "cors";    
 
 const app = express();
 const port = 3000;
+
+app.use(cors());
 
 const musicData = JSON.parse(fs.readFileSync("datafile.json", "utf-8"));
 
@@ -15,9 +16,13 @@ app.get("/search", (request, response) => {
     let foundSong = null;
 
     for (const album of musicData.albums) {
-        for (const song of album.songs){
-            if (song.toLowerCase() === query) {
-                foundSong = { song, album: album.title, artist: album.artist};
+        for (const track of album.tracks){
+            if (track.title.toLowerCase() === query.toLowerCase()) {
+                foundSong = { 
+                    song: track.title,
+                    album: album.title, 
+                    artist: album.artist.name
+                };
                 break;
             }
         }
