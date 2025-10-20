@@ -1,9 +1,15 @@
 * {
-    background-color: #2f00ff;
+    background-color: #3f1cdbf7;
 }
 img {
     width: 300px;
     height: auto;
     display: block;
     margin: auto;
+}
+.search-box {
+    text-align: center;
+    margin: 20px;
+    color: white;
+
 }
