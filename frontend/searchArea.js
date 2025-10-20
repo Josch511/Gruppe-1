@@ -1,9 +1,25 @@
 document.getElementById("searchBtn").addEventListener("click", async () => {
-    const query = document.getElementById("inputArea").Value.trim();
+    const query = document.getElementById("inputArea").value.trim();
     const resultEl = document.getElementById("result");
-    if (!query) return resultEl.textContent = "Indtast en sangtitel";
+    
+    if (!query) {
+        resultEl.textContent = "Indtast en sangtitel";
+        return;
+    }    
 
-    const res = 
-} )
+    try {
+        const res = await fetch(`http://localhost:5500/search?song=${encodeURIComponent(query)}`);
+        const data = await res.json();
+
+        if (data.found){
+            resultEl.textContent = "Vi fandt sangen "${data.song}" af ${data.artist} fra albummet "${data.album}".";
+        } else {
+            resultEl.textContent = "Vi kunne dsv ikke finde en sang der matchede din søgning, prøv igen."
+        }
+    } catch (error) {
+        console.error(error);
+        resultEl.textContent = "Der opstod en fejl, prøv igen";
+    }
+});
 
 
