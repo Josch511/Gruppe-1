@@ -1,36 +1,34 @@
-import express from "express";
-import fs from "fs";
-import cors from "cors";    
+import express, { response } from "express";
+import { albums } from "./datafile.json";
+import { error } from "console";
 
 
-const app = express();
+const server = express();
 const port = 3000;
 
-app.use(cors());
+server.use(express.static("frontend"));
+server.use(onEachRequest);
 
-const musicData = JSON.parse(fs.readFileSync("datafile.json", "utf-8"));
+server.get("/search", onMusicData) 
+server.listen(port, onServerReady)
 
-app.get("/search", (request, response) => {
-    const query = request.query.song?.toLowerCase();
-    if(!query) return response.json({ found: false });
 
-    let foundSong = null;
+function onMusicData(request, response){
+    const query = Number(request.params.id).toLowerCase();
+    let foundAlbum = null;
 
-    for (const album of musicData.albums) {
-        for (const track of album.tracks){
-            if (track.title.toLowerCase() === query.toLowerCase()) {
-                foundSong = { 
-                    song: track.title,
-                    album: album.title, 
-                    artist: album.artist.name
-                };
-                break;
-            }
+    for (let i = 0; i < albums.length; i ++){
+        i (albums[i].query == query) {
+        foundAlbum = albums[i];
+        break;
         }
-        if (foundSong) break; 
     }
-    if (foundSong) response.json({found: true, ...foundSong});
-    else response.json({found: false});
-});
+
+    if (foundAlbum) {
+        response.json(foundAlbum);
+    } else {
+        response.status(404).json({error: "sang ikke fundet"})
+    }
+}
 
 app.listen(port, () => console.log("serveren kører som den skal") )
