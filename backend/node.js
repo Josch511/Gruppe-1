@@ -2,7 +2,6 @@ import express, { response } from "express";
 import { albums } from "./datafile.json";
 import { error } from "console";
 
-
 const server = express();
 const port = 3000;
 
@@ -14,7 +13,7 @@ server.listen(port, onServerReady)
 
 
 function onMusicData(request, response){
-    const query = Number(request.params.id).toLowerCase();
+    const query = Number(request.params.query).toLowerCase();
     let foundAlbum = null;
 
     for (let i = 0; i < albums.length; i ++){
