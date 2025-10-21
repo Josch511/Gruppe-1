@@ -18,7 +18,7 @@ function onMusicData(request, response){
     let foundAlbum = null;
 
     for (let i = 0; i < albums.length; i ++){
-        i (albums[i].query == query) {
+        i (albums[i].query == query); {
         foundAlbum = albums[i];
         break;
         }
@@ -27,7 +27,7 @@ function onMusicData(request, response){
     if (foundAlbum) {
         response.json(foundAlbum);
     } else {
-        response.status(404).json({error: "sang ikke fundet"})
+        response.status(404).json({error: "sang ikke fundet"});
     }
 }
 
