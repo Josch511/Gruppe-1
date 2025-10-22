@@ -17,7 +17,7 @@ function onMusicData(request, response){
     let foundAlbum = null;
 
     for (let i = 0; i < albums.length; i ++){
-        i (albums[i].query == query) {
+        if (albums[i].query == query) {
         foundAlbum = albums[i];
         break;
         }
