@@ -9,7 +9,7 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
 
     try {
         const res = await fetch(`http://localhost:3000/search?song=${encodeURIComponent(query)}`);
-        const data = await res.json();
+        const data = await res.js();
 
         if (data.found){
             resultEl.textContent = `Vi fandt sangen "${data.song}" af ${data.artist} fra albummet "${data.album}".`;

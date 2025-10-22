@@ -1,5 +1,5 @@
 import express, { response } from "express";
-import { albums } from "./datafile.js";
+import { albums } from "./datafile.json";
 
 const port = 3000;
 const server = express();
@@ -13,21 +13,21 @@ server.listen(port, onServerReady)
 
 
 function onMusicData(request, response){
-    const id = Number(request.params.id).toLowerCase();
+    const query = Number(request.params.query).toLowerCase();
     let foundAlbum = null;
 
     for (let i = 0; i < albums.length; i ++){
-        i (albums[i].id == id); {
+        i (albums[i].query == query) {
         foundAlbum = albums[i];
         break;
         }
-    }
     }
 
     if (foundAlbum) {
         response.json(foundAlbum);
     } else {
-        response.status(404).json({error: "sang ikke fundet"})
+        response.status(404).json({error: "sang ikke fundet"});
     }
+}
 
-server.listen(port, () => console.log("serveren kører som den skal") )
+app.listen(port, () => console.log("serveren kører som den skal") )
