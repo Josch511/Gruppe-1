@@ -7,9 +7,9 @@ const server = express();
 server.use(express.static("frontend"));
 server.use(onEachRequest);
 
-server.get("/search", onMusicData) 
+server.get("/search", onMusicData);
 
-server.listen(port, onServerReady)
+server.listen(port, onServerReady);
 
 
 function onMusicData(request, response){
@@ -18,7 +18,7 @@ function onMusicData(request, response){
 
     for (let i = 0; i < albums.length; i ++){
         if (albums[i].query == query) {
-        foundAlbum = albums[i];
+        foundAlbum = albumstestest[i];
         break;
         }
     }
