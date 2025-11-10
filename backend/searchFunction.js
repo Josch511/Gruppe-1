@@ -1,33 +1,41 @@
-import express, { response } from "express";
-import { albums } from "./datafile.json";
+import express from "express";
+import { albums } from "./datafile.json" assert { type: "json" }; // vigtigt i ES-modules!
 
 const port = 3000;
-const server = express();
+const app = express();
 
-server.use(express.static("frontend"));
-server.use(onEachRequest);
+// Gør mappen 'frontend' tilgængelig som statiske filer
+app.use(express.static("frontend"));
 
-server.get("/search", onMusicData) 
+// Håndtér søge-requests
+app.get("/search", (req, res) => {
+  // hent ?song= fra querystring
+  const query = req.query.song?.toLowerCase() || "";
 
-server.listen(port, onServerReady)
+  // find album i dine data (tilpas efter datafile.json’s struktur)
+  const foundAlbum = albums.find((album) =>
+    album.song.toLowerCase().includes(query)
+  );
 
+  if (foundAlbum) {
+    res.json({
+      found: true,
+      song: foundAlbum.song,
+      artist: foundAlbum.artist,
+      album: foundAlbum.album,
+    });
+  } else {
+    // hvis intet fundet, returnér også forslag (til autocomplete)
+    const suggestions = albums
+      .filter((album) => album.song.toLowerCase().includes(query))
+      .slice(0, 5)
+      .map((a) => ({ song: a.song, artist: a.artist }));
 
-function onMusicData(request, response){
-    const query = Number(request.params.query).toLowerCase();
-    let foundAlbum = null;
+    res.json({ found: false, suggestions });
+  }
+});
 
-    for (let i = 0; i < albums.length; i ++){
-        if (albums[i].query == query) {
-        foundAlbum = albums[i];
-        break;
-        }
-    }
-
-    if (foundAlbum) {
-        response.json(foundAlbum);
-    } else {
-        response.status(404).json({error: "sang ikke fundet"});
-    }
-}
-
-app.listen(port, () => console.log("serveren kører som den skal") )
+// Start serveren
+app.listen(port, () => {
+  console.log(`✅ Serveren kører på http://localhost:${port}`);
+});
