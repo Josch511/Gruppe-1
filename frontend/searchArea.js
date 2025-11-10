@@ -11,8 +11,10 @@ document.getElementById('searchBtn').addEventListener('click', async () => {
         const res = await fetch(`http://localhost:3000/search?song=${encodeURIComponent(query)}`);
         const data = await res.json();
 
+        console.log(data)
+
         if (data.found){
-            resultEl.textContent = `Vi fandt sangen "${data.song}" af ${data.artist} fra albummet "${data.album}".`;
+            resultEl.textContent = `Vi fandt sangen "${query}" af ${data.album.artist.name} fra albummet "${data.album.title}".`;
         } else {
             resultEl.textContent = 'Vi kunne dsv ikke finde en sang der matchede din søgning, prøv igen.'
         }
