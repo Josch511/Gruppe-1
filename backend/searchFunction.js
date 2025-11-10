@@ -4,11 +4,13 @@ import data from "./datafile.json" assert { type: "json" };
 const app = express();
 const port = 3000;
 
+// Gør din frontend-mappe tilgængelig (fx index.html, script.js osv.)
 app.use(express.static("frontend"));
-s
+
+// --- API: /search?song=navn ---
 app.get("/search", (req, res) => {
   const query = req.query.song?.toLowerCase() || "";
-  console.log("Søger efter:", query);
+  console.log("🔍 Søger efter:", query);
 
   if (!query) return res.json({ found: false, suggestions: [] });
 
@@ -27,7 +29,7 @@ app.get("/search", (req, res) => {
     if (foundTrack) break;
   }
 
-  // Hvis eksakt match
+  // Hvis eksakt match findes
   if (foundTrack) {
     return res.json({
       found: true,
@@ -39,7 +41,7 @@ app.get("/search", (req, res) => {
     });
   }
 
-  // Ellers lav autocomplete-forslag (partial matches)
+  // Ellers lav forslag (autocomplete)
   const suggestions = [];
   for (const album of data.albums) {
     for (const track of album.tracks) {
@@ -53,12 +55,13 @@ app.get("/search", (req, res) => {
     }
   }
 
-  return res.json({
+  res.json({
     found: false,
-    suggestions: suggestions.slice(0, 5) // vis max 5 forslag
+    suggestions: suggestions.slice(0, 5) // max 5 forslag
   });
 });
 
+// --- Server klar ---
 app.listen(port, () => {
   console.log(`✅ Serveren kører på http://localhost:${port}`);
 });
