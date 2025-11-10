@@ -1,55 +1,36 @@
-// Tilføj event listener på knappen
-document.getElementById("searchBtn").addEventListener("click", searchSong);
+const input = document.getElementById("inputArea");
+const suggestionsBox = document.getElementById("suggestions");
+const resultEl = document.getElementById("result");
 
-// Gør det muligt at trykke "Enter" i inputfeltet
-document.getElementById("inputArea").addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    searchSong();
-  }
-});
+input.addEventListener("input", async () => {
+  const query = input.value.trim();
+  suggestionsBox.innerHTML = "";
 
-async function searchSong() {
-  const query = document.getElementById("inputArea").value.trim();
-  const resultEl = document.getElementById("result");
-
-  // Ryd tidligere resultater
-  resultEl.textContent = "";
-  resultEl.style.color = "#333";
-
-  if (!query) {
-    resultEl.textContent = "Indtast en sangtitel 🎵";
-    resultEl.style.color = "red";
-    return;
-  }
-
-  // Vis "loader"
-  resultEl.textContent = "Søger efter sangen... 🔍";
+  if (!query) return;
 
   try {
-    const res = await fetch(
-      `http://localhost:3000/search?song=${encodeURIComponent(query)}`
-    );
-
-    if (!res.ok) {
-      throw new Error(`Serverfejl: ${res.status}`);
-    }
-
+    const res = await fetch(`/search?song=${encodeURIComponent(query)}`);
     const data = await res.json();
 
     if (data.found) {
-      resultEl.innerHTML = `
-        ✅ Vi fandt sangen: <strong>${data.song}</strong><br>
-        👨‍🎤 Kunstner: <em>${data.artist}</em><br>
-        💿 Album: <em>${data.album}</em>
-      `;
-      resultEl.style.color = "green";
+      resultEl.textContent = `🎵 ${data.song} — ${data.artist} (${data.album})`;
+    } else if (data.suggestions.length > 0) {
+      data.suggestions.forEach(s => {
+        const div = document.createElement("div");
+        div.textContent = `${s.song} — ${s.artist}`;
+        div.classList.add("suggestion");
+        div.onclick = () => {
+          input.value = s.song;
+          resultEl.textContent = `🎵 ${s.song} — ${s.artist} (${s.album})`;
+          suggestionsBox.innerHTML = "";
+        };
+        suggestionsBox.appendChild(div);
+      });
     } else {
-      resultEl.textContent =
-        "❌ Vi kunne desværre ikke finde en sang, der matchede din søgning.";
-      resultEl.style.color = "orange";
+      resultEl.textContent = "Ingen resultater";
     }
-  } catch (error) {
-    console.error(error);
-    resultEl.textContent = "🚨 Der opstod en fejl, prøv igen.";
-    resultEl.style.color = "red";
-  }}
+  } catch (err) {
+    console.error(err);
+    resultEl.textContent = "Der opstod en fejl, prøv igen";
+  }
+});
