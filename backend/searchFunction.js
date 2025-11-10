@@ -1,14 +1,14 @@
-import express, { response } from "express";
-import { albums } from "./datafile.json";
+import express, { response } from 'express';
+import { albums } from './datafile.json';
 
 
 const server = express();
 const port = 3000;
 
-server.use(express.static("frontend"));
+server.use(express.static('frontend'));
 server.use(onEachRequest);
 
-server.get("/search", onMusicData) 
+server.get('/search', onMusicData) 
 
 server.listen(port, onServerReady)
 
@@ -28,8 +28,8 @@ function onMusicData(request, response){
     if (foundAlbum) {
         response.json(foundAlbum);
     } else {
-        response.status(404).json({error: "sang ikke fundet"})
+        response.status(404).json({error: 'sang ikke fundet'})
     }
 
 
-app.listen(port, () => console.log("serveren kører som den skal") )
+app.listen(port, () => console.log('serveren kører som den skal') )
