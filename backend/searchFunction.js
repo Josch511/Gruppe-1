@@ -1,8 +1,9 @@
 import express, { response } from 'express';
 import { albums } from './datafile.json';
 
+const app = express();
+app.use(cors());
 
-const server = express();
 const port = 3000;
 
 server.use(express.static('frontend'));
