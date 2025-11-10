@@ -22,7 +22,7 @@ function onMusicData(request, response){
     const query = (request.query.song);
     let foundAlbum = null;
 
-console.log(request.query.song)
+// console.log(request.query.song)
 
     for (let i = 0; i < albums.length; i ++){
 
@@ -34,7 +34,7 @@ console.log(request.query.song)
             }
         }
     }
-    console.log(foundAlbum);
+// console.log(foundAlbum);
 
  if (foundAlbum) {response.json({found: true, album: foundAlbum});}
     else response.json({found: false});
