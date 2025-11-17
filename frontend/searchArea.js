@@ -4,7 +4,6 @@ const resultEl = document.getElementById('result');
 let timeoutId = null;
 
 // Auto search: trigger søgning mens man skriver
-
 inputArea.addEventListener('input', () => {
     const query = inputArea.value.trim();
     // Stopper hvis input er tomt
