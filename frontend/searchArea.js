@@ -38,7 +38,7 @@ async function searchSong(query) {
                 resultEl.appendChild(p);
             });
         } else {
-            resultEl.textContent = 'Vi kunne desværre ikke finde en sang, prøv igen.';
+            resultEl.textContent = 'Vi kunne desværre ikke finde en sang der matchede din søgning, prøv igen.'
         }
 
     } catch (error) {

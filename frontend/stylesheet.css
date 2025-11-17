@@ -67,6 +67,10 @@ img {
   opacity: 0.5;
 }
 
+#inputArea:hover {
+  background-color: #f0f0f0;
+}
+
 #searchBtn {
   padding: 10px 20px;
   margin: 0;
