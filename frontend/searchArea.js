@@ -4,9 +4,9 @@ const resultEl = document.getElementById('result');
 let timeoutId = null;
 
 // Auto search: trigger søgning mens man skriver
+
 inputArea.addEventListener('input', () => {
     const query = inputArea.value.trim();
-
     // Stopper hvis input er tomt
     if (!query) {
         resultEl.textContent = '';
@@ -28,13 +28,14 @@ async function searchSong(query) {
 
         // Tøm resultater
         resultEl.innerHTML = '';
-
+        // data.found siger om der er blevet fundet sange. data.tracks.length tjekker at arrayet har mindst et element (Begge skal være true)
         if (data.found && data.tracks.length > 0) {
-            // Vis alle matches som vi har valgt at begrænse den til
+            // Viser alle matches som vi har valgt at begrænse den til
             const matches = data.tracks.slice(0, 15);
             matches.forEach(track => {
                 const p = document.createElement('p');
                 p.textContent = `"${track.title}" af ${track.artist} fra albummet "${track.albumTitle}"`;
+                // vi tilføjer <p>-elementet til #result containeren i HTML’en, så det vises på siden.
                 resultEl.appendChild(p);
             });
         } else {
