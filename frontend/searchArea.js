@@ -30,11 +30,11 @@ async function searchSong(query) {
         resultEl.innerHTML = '';
 
         if (data.found && data.tracks.length > 0) {
-            // Vis alle matches (eller begræns fx til 5)
+            // Vis alle matches som vi har valgt at begrænse den til
             const matches = data.tracks.slice(0, 15);
             matches.forEach(track => {
                 const p = document.createElement('p');
-                p.textContent = `Vi fandt sangen "${track.title}" af ${track.artist} fra albummet "${track.albumTitle}"`;
+                p.textContent = `Vi fandt sangen "${track.title}" af "${track.artist}" fra albummet "${track.albumTitle}"`;
                 resultEl.appendChild(p);
             });
         } else {
