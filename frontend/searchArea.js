@@ -34,7 +34,7 @@ async function searchSong(query) {
             const matches = data.tracks.slice(0, 5);
             matches.forEach(track => {
                 const p = document.createElement('p');
-                p.textContent = `Vi fandt sangen "${track.title}" af ${track.artist} fra albummet "${track.albumTitle}"`;
+                p.textContent = `"${track.title}" af ${track.artist} fra albummet "${track.albumTitle}"`;
                 resultEl.appendChild(p);
             });
         } else {
