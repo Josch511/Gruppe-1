@@ -38,8 +38,8 @@ console.log(request.query.song)
 
  if (foundAlbum) {response.json({found: true, album: foundAlbum});}
     else response.json({found: false});
-
 }
+
 function onEachRequest(request, response, next) {
     console.log(new Date(), request.method, request.url);
     next();
