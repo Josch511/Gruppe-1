@@ -11,38 +11,35 @@ const musicData = JSON.parse(fs.readFileSync("./backend/datafile.json"));
 const albums = musicData.albums
 
 server.use(express.static('frontend'));
-server.use(onEachRequest);
 
 server.get('/search', onMusicData) 
 
 server.listen(port, onServerReady)
 
 
-function onMusicData(request, response){
-    const query = (request.query.song);
-    let foundAlbum = null;
+function onMusicData(request, response) {
+    const query = (request.query.song.toLowerCase()); // gør søgningen case-insensitive
+    let matchingTracks = [];
 
-console.log(request.query.song)
+    console.log(request.query.song);
 
-    for (let i = 0; i < albums.length; i ++){
-
-        for (let h = 0; h < albums[i].tracks.length; h ++){
-            if (albums[i].tracks[h].title == query){
-                console.log("found")
-            foundAlbum = albums[i];
-            break;
+    for (let i = 0; i < albums.length; i++) {
+        for (let h = 0; h < albums[i].tracks.length; h++) {
+            const trackTitle = albums[i].tracks[h].title.toLowerCase();
+            if (trackTitle.includes(query)) { // match hvor som helst i teksten
+                matchingTracks.push({
+                    album: albums[i].name,
+                    track: albums[i].tracks[h]
+                });
             }
         }
     }
-    console.log(foundAlbum);
 
- if (foundAlbum) {response.json({found: true, album: foundAlbum});}
-    else response.json({found: false});
-
-}
-function onEachRequest(request, response, next) {
-    console.log(new Date(), request.method, request.url);
-    next();
+    if (matchingTracks.length > 0) {
+        response.json({ found: true, results: matchingTracks });
+    } else {
+        response.json({ found: false });
+    }
 }
 
 function onServerReady() {
