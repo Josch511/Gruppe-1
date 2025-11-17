@@ -1,11 +1,14 @@
 {
   "name": "gruppe-1",
   "version": "1.0.0",
-  "description": "JukeBox",
-  "main": "index.js",
+  "type": "module",
+  "description": "hejsa venner",
+  "main": "backend/searchFunction.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "type": "module"
+    "dev-server": "nodemon backend/searchFunction.js",
+    "prod-server": "node backend/searchFunction.js",
+    "create-db": "node db/createDb.js"
   },
   "repository": {
     "type": "git",
@@ -14,13 +17,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Josch511/Gruppe-1/issues"
   },
   "homepage": "https://github.com/Josch511/Gruppe-1#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "pg": "8.16.3",
+    "dotenv": "17.2.3",
+    "pg-upload": "0.0.6"
+  },
+  "devDependencies": {
+      "nodemon": "3.1.10"
   }
 }
