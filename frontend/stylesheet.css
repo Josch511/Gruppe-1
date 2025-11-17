@@ -58,6 +58,7 @@ img {
 .search-box {
   display: flex;
   gap: 10px;
+  position: relative;
 }
 
 #inputArea {
@@ -110,4 +111,26 @@ img {
   align-items: center;
   justify-content: center;
   min-height: 100px;
+}
+
+.suggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none; /* skjult som standard */
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.suggestions p {
+    margin: 0;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestions p:hover {
+    background-color: #f0f0f0;
 }
