@@ -1,4 +1,4 @@
-import express, { response } from 'express';
+import express from 'express';
 import fs from "fs";
 import cors from "cors";    
 
@@ -7,16 +7,18 @@ server.use(cors());
 
 const port = 3000;
 
-const musicData = JSON.parse(fs.readFileSync("./backend/datafile.json"));
-const albums = musicData.albums
+const musicData = JSON.parse(fs.readFileSync("./backend/datafile.json", "utf8"));
+const albums = musicData.albums;
 
-server.use(express.static('frontend'));
 server.use(onEachRequest);
+server.use(express.static('frontend'));
 
-server.get('/search', onMusicData) 
+server.get('/search', onMusicData);
 
-server.listen(port, onServerReady)
+server.listen(port, () => console.log('webserver running on port', port));
 
+
+// -------------------- FUNCTIONS --------------------
 
 function onMusicData(request, response){
     const query = (request.query.song);
@@ -38,15 +40,9 @@ console.log(request.query.song)
 
  if (foundAlbum) {response.json({found: true, album: foundAlbum});}
     else response.json({found: false});
-}
 
+}
 function onEachRequest(request, response, next) {
     console.log(new Date(), request.method, request.url);
     next();
 }
-
-function onServerReady() {
-    console.log('webserver running on port', port)
-}
-
-server.listen(port, () => console.log('serveren kører som den skal') )
