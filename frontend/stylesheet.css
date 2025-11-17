@@ -1,7 +1,10 @@
 * {
-  background: rgb(0, 151, 181);
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
+}
+
+body {
+  background: rgb(0, 151, 181);
 }
 
 img {
@@ -61,7 +64,7 @@ img {
 
 #inputArea::placeholder {
   color: black;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 #searchBtn {
@@ -74,8 +77,12 @@ img {
   border-radius: 8px;
   cursor: pointer;
 }
+#searchBtn:hover {
+  background-color: #5753d6;
+}
 
 #result {
+  line-height: 1.5;
   width: 800px;
   min-height: 250px;
   margin: 20px 0;
@@ -88,4 +95,8 @@ img {
   align-items: center;
   color: #666;
   text-align: center;
+}
+
+h1 {
+  margin-top: 40px;
 }

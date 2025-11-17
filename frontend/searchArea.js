@@ -24,4 +24,15 @@ document.getElementById('searchBtn').addEventListener('click', async () => {
     }
 });
 
+function onEnter() {
+    document.getElementById("inputArea").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("searchBtn").click();
+        }
+    });
+}
+
+onEnter();
+
 
