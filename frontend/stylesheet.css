@@ -1,84 +1,75 @@
 * {
-    background-image: linear-gradient(to right, rgb(197, 7, 166),rgb(154, 8, 159),rgb(132, 19, 132),rgb(154, 14, 129),rgb(132, 19, 132),rgb(154, 8, 159),rgb(197, 7, 166));
-    font-family: 'Montserrat', sans-serif;;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
+
+body {
+  background: rgb(0, 151, 181);
+}
+
 img {
-  width: 300px;
+  width: 450px;
   height: auto;
   display: block;
-  margin: auto;
+  margin: 30px auto 20px;
 }
 
-#cartBox {
-  background-color: #f8f8f8;
+#cartBox, .info {
+  position: fixed;
+  bottom: 20px;
+  width: 250px;
+  height: 180px;
+  padding: 20px;
+  margin: 0;
+  background: white;
   border: 2px solid #ccc;
   border-radius: 12px;
-  padding: 16px;
-  right: 20px;
-  bottom: 20px;
-  position: fixed;
-  width: 15%;
-  height: 15%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   text-align: center;
-  font-size: large;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#cartBox h3,
-#cartBox p,
-#cartBox button,
-#cartBox ul {
+#cartBox { right: 20px; }
+.info { left: 20px; }
+
+.info h1, .info p {
+  margin: 5px 0;
   background-color: transparent;
 }
 
-.info {
-  background-color: white;
-  border: 2px solid white;
-  width: 20%;
-  bottom: 20px;
-  height: 15%;
-  left: 20px;
-  position: fixed;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  border: 2px solid white;
-  padding: 16px;
-}
-.info p {
-  background-color: transparent;
-  font-size: medium;
-  font-weight: bold;
-}
-.info h1 {
-  background-color: transparent;
-  font-size: x-large;
-  font-weight: bold;
+.center-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .search-box {
   display: flex;
   gap: 10px;
+  margin: 20px 0;
 }
 
 #inputArea {
-  width: 700px;
+  width: 725px;
   height: 45px;
-  padding: 10px;
+  padding: 10px 15px;
+  margin: 0;
   font-size: 16px;
   border: 2px solid #ccc;
   border-radius: 8px;
-  color: black;
   font-weight: bold;
+  color: black;
+  background: white;
 }
 
 #inputArea::placeholder {
   color: black;
-  opacity: 1;
-  font-weight: bold;
+  opacity: 0.5;
 }
 
 #searchBtn {
   padding: 10px 20px;
+  margin: 0;
   font-size: 16px;
   background-color: #6c63ff;
   color: white;
@@ -86,28 +77,26 @@ img {
   border-radius: 8px;
   cursor: pointer;
 }
-
 #searchBtn:hover {
-  background-color: #5952d4;
+  background-color: #5753d6;
 }
 
 #result {
+  line-height: 1.5;
   width: 800px;
   min-height: 250px;
+  margin: 20px 0;
+  padding: 20px;
   background: beige;
-  margin-top: 30px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 2px solid #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #666;
+  text-align: center;
 }
 
-.center-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100px;
+h1 {
+  margin-top: 40px;
 }

@@ -45,4 +45,6 @@ async function searchSong(query) {
         console.error(error);
         resultEl.textContent = 'Der opstod en fejl, prøv igen';
     }
-}
+});
+
+

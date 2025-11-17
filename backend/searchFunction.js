@@ -20,29 +20,28 @@ server.listen(port, () => console.log('webserver running on port', port));
 
 // -------------------- FUNCTIONS --------------------
 
-function onMusicData(request, response) {
-    const query = request.query.song?.toLowerCase() || '';
-    const matches = [];
+function onMusicData(request, response){
+    const query = (request.query.song);
+    let foundAlbum = null;
 
-    for (const album of albums) {
-        for (const track of album.tracks) {
-            if (track.title.toLowerCase().includes(query)) {
-                matches.push({
-                    title: track.title,
-                    albumTitle: album.title,
-                    artist: album.artist.name
-                });
+console.log(request.query.song)
+
+    for (let i = 0; i < albums.length; i ++){
+
+        for (let h = 0; h < albums[i].tracks.length; h ++){
+            if (albums[i].tracks[h].title == query){
+                console.log("found")
+            foundAlbum = albums[i];
+            break;
             }
         }
     }
+    console.log(foundAlbum);
 
-    if (matches.length > 0) {
-        response.json({ found: true, tracks: matches });
-    } else {
-        response.json({ found: false, tracks: [] });
-    }
+ if (foundAlbum) {response.json({found: true, album: foundAlbum});}
+    else response.json({found: false});
+
 }
-
 function onEachRequest(request, response, next) {
     console.log(new Date(), request.method, request.url);
     next();
