@@ -16,7 +16,7 @@ document.getElementById('searchBtn').addEventListener('click', async () => {
         if (data.found){
             resultEl.textContent = `Vi fandt sangen "${query}" af ${data.album.artist.name} fra albummet "${data.album.title}".`;
         } else {
-            resultEl.textContent = 'Vi kunne dsv ikke finde en sang der matchede din søgning, prøv igen.'
+            resultEl.textContent = 'Vi kunne desværre ikke finde en sang der matchede din søgning, prøv igen.'
         }
     } catch (error) {
         console.error(error);
