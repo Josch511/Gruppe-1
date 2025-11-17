@@ -25,7 +25,7 @@ function onMusicData(request, response) {
 
     for (const album of albums) {
         for (const track of album.tracks) {
-            if (track.title.toLowerCase().includes(query)) {
+            if (track.title.toLowerCase().startsWith(query)) {
                 matches.push({
                     title: track.title,
                     albumTitle: album.title,
