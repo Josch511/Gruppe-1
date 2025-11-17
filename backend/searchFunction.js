@@ -18,7 +18,6 @@ server.get('/search', onMusicData);
 server.listen(port, () => console.log('webserver running on port', port));
 
 
-// -------------------- FUNCTIONS --------------------
 
 function onMusicData(request, response) {
     const query = request.query.song?.toLowerCase() || '';
