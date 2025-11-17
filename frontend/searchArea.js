@@ -3,17 +3,17 @@ const resultEl = document.getElementById('result');
 
 let timeoutId = null;
 
-// Auto search: trigger søgning mens du skriver (debounce)
+// Auto search: trigger søgning mens man skriver
 inputArea.addEventListener('input', () => {
     const query = inputArea.value.trim();
 
-    // Stop hvis input er tomt
+    // Stopper hvis input er tomt
     if (!query) {
         resultEl.textContent = '';
         return;
     }
 
-    // Debounce: vent 300ms efter sidste tast
+    // Laver et 300 ms interval så den ikke svarer i samme sekund du trykker på et bogstav
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
         searchSong(query);
@@ -22,7 +22,7 @@ inputArea.addEventListener('input', () => {
 
 async function searchSong(query) {
     try {
-        // Send query til backend
+        // Sender query til backend som der henter sangen
         const res = await fetch(`/search?song=${encodeURIComponent(query)}`);
         const data = await res.json();
 
@@ -31,10 +31,10 @@ async function searchSong(query) {
 
         if (data.found && data.tracks.length > 0) {
             // Vis alle matches (eller begræns fx til 5)
-            const matches = data.tracks.slice(0, 5);
+            const matches = data.tracks.slice(0, 15);
             matches.forEach(track => {
                 const p = document.createElement('p');
-                p.textContent = `"${track.title}" af ${track.artist} fra albummet "${track.albumTitle}"`;
+                p.textContent = `Vi fandt sangen "${track.title}" af ${track.artist} fra albummet "${track.albumTitle}"`;
                 resultEl.appendChild(p);
             });
         } else {
